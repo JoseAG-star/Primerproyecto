@@ -49,12 +49,12 @@ Explorando las oportunidades en Laravel 12
             </tr>
         </thead>
         <tbody>
-            @foreach(listadousuarios as $usuario)
+            @foreach($listadousuarios as $usuario)
             <tr>
-                <td>({$usuario->name})</td>
-                <td>({$usuario->email})</td>
-                <td>({$usuario->telefono})</td>
-                <td>({$usuario->calle})</td>
+                <td>{{$usuario->name}}</td>
+                <td>{{$usuario->email}}</td>
+                <td>{{$usuario->telefono}}</td>
+                <td>{{$usuario->calle}}</td>
             </tr>
             @endforeach
         </tbody>
