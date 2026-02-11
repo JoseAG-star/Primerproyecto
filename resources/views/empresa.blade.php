@@ -3,11 +3,11 @@
 @push('css')
 <style>
     .fondo{
-background: blue;
+background: #302886;
     }
-    .img responsive{
+    .img-responsive{
 width: 100%;
-height: auto;
+height: 100%;
     }
 </style>
 @endpush

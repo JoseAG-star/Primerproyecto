@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap 5 Example</title>
+  <title>@yield('titulopagina')</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/Z1srPv7lOy9C27hHQ+Xp8a4MxAQ5a+W5IT+brkrY5S9bJmVM2hMDcnK1OnMGCdVK+8g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-   <link rel="stylesheet" href="https://cdn.datatables.net/2.3.7/css/dataTables.dataTables.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/boostrap.min.css"
+    />
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.3.7/css/dataTables.dataTables.css" />
   <style>
-    .fakeimg {
-      height: 200px;
-      background: #aaa;
+    .fakeimg{
+        height: 200px;
+        background: #aaa;
     }
-    </style>
-@stack('css')
+  </style>
+  @stack('css')
 </head>
 <body>
 
 <div class="p-5 text-white text-center fondo">
   <h1>@yield('titulo')</h1>
   <h4>@yield('subtitulo')</h4>
-  <p>Resize this responsive page to see the effect!</p>
+  <p>Resize this responsive page to see the effect!</p> 
 </div>
   
-<div class="navbar navbar-expand-sm bg-dark navbar-dark">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark"> 
   <div class="container-fluid">
-    <div class="navbar-nav">
+    <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link active" href="#">@yield('link1')</a>
       </li>
-      <li class="nav-item">
+      <li>
         <a class="nav-link" href="#">@yield('link2','link #2')</a>
       </li>
       <li class="nav-item">
@@ -40,15 +41,15 @@
         <a class="nav-link disabled" href="#">Disabled</a>  
       </li>
     </ul>    
-    </div>
-  </nav>
+  </div>
+</nav>
 
 <div class="container mt-5">
   <div class="row">
     <div class="col-sm-4">
       <h2>@yield('titulo1')</h2>
       <h5>Photo of me:</h5>
-      <div class="fakeimg"><img src="Imagenes\Imagenes01.png" 
+      <div class="fakeimg"><img src="Imagenes\Imagen01.png" 
         class="img-responsive" alt="Image"></div>
       <p>@yield('descripcion_about')</p>
       <h3 class="mt-4">Some Links</h3>
@@ -73,7 +74,7 @@
     <div class="col-sm-8">
       <h2>TITLE HEADING</h2>
       <h5>Title description, Dec 7, 2020</h5>
-      <div class="fakeimg"><img src="Imagenes\Imagenes02.png" 
+      <div class="fakeimg"><img src="Imagenes\Imagen02.jfif" 
         class='img-responsive'></div>
       <p>Some text...</p>
       <p>Sunt in culpa qui officia deserunt mollit anim id est laborum
