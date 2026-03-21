@@ -110,7 +110,32 @@
   <i class="fa-brands fa-telegram"></i>
   <i class="fa-brands fa-youtube"></i>
 </div>
-
+<div class="modal" tabindex="-1" id="myModal" role="dialog">
+  <form id="editForm" method="POST">
+    @csrf @method('PUT')
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">@yield('titulo_modal')</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type='hidden' name='id' id='id'>
+          <input type='text' name='name' id='name' class="form-control">
+          <input type='text' name='calle' id='calle' class="form-control">
+          <p>Modal body text goes here.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+ 
 </body>
 </html>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -124,9 +149,76 @@
                 { data: "name" },
                 { data: "email" },
                 { data: "telefono" },
-                { data: "calle" }
+                { data: "calle" },
+                { data: 'acciones'}
             ]
           }
         );
     });         
+    function carga_modal(id, name, calle){
+      $('#id').val(id);
+      $('#name').val(name);
+      $("#calle").val(calle);
+      $("#editForm").attr('action', '/actualizar-dato/' + id);
+      $('#myModal').modal('show');
+    }
+
+    $("#editForm").on('submit', function(e){
+      e.preventDefault();
+      alert($(this).serialize());
+      $.ajax({
+        url: $(this).attr('action'),
+        type: 'POST',
+        method: 'PUT',
+        data: $(this).serialize(),
+        success: function(response){
+          $('#myModal').modal('hide');
+          location.reload();
+        },
+        error: function(xhr){
+          console.log(xhr.responseText);
+        }
+      });
+    })
+    // 4. NUEVA: Función para el botón Amarillo (Eliminación Lógica)
+    function desactivar_usuario(id) {
+        if(confirm('¿Seguro que deseas desactivar este usuario?')) {
+            $.ajax({
+                url: '/desactivar-usuario/' + id,
+                type: 'POST',
+                data: {
+                    _method: 'PATCH',
+                    _token: '{{ csrf_token() }}' // Token de seguridad de Laravel
+                },
+                success: function(response){
+                    location.reload(); 
+                },
+                error: function(xhr){
+                    console.log(xhr.responseText);
+                    alert("Error al intentar desactivar el usuario.");
+                }
+            });
+        }
+    }
+
+    // 5. NUEVA: Función para el botón Rojo (Eliminación Física)
+    function eliminar_usuario(id) {
+        if(confirm('¿Seguro que deseas borrar permanentemente este usuario?')) {
+            $.ajax({
+                url: '/eliminar-usuario/' + id,
+                type: 'POST',
+                data: {
+                    _method: 'DELETE',
+                    _token: '{{ csrf_token() }}' // Token de seguridad de Laravel
+                },
+                success: function(response){
+                    location.reload();
+                },
+                error: function(xhr){
+                    console.log(xhr.responseText);
+                    alert("Error al intentar eliminar el usuario.");
+                }
+            });
+        }
+    }
 </script>

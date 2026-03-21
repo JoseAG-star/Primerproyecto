@@ -45,6 +45,7 @@ Explorando las oportunidades en Laravel 12
                 <th>Email</th>
                 <th>Telefono</th>
                 <th>Calle</th>
+                <th>Acciones</th>
 
             </tr>
         </thead>
@@ -55,6 +56,10 @@ Explorando las oportunidades en Laravel 12
                 <td>{{$usuario->email}}</td>
                 <td>{{$usuario->telefono}}</td>
                 <td>{{$usuario->calle}}</td>
+                <td><button class='btn btn-primary' onclick="carga_modal({{$usuario->id}}, '{{$usuario->name}}', '{{$usuario->calle}}')" data-id="{{$usuario->id}}" data-nombre="{{$usuario->name}}" data-calle="{{$usuario->calle}}" data-toggle="modal" data-target="#myModal"><span class='fa fa-pencil'></span></button>
+                <button class='btn btn-warning' onclick="desactivar_usuario({{$usuario->id}})"><span class='fa fa-ban'></span></button>
+                <button class='btn btn-danger' onclick="eliminar_usuario({{$usuario->id}})"><span class='fa fa-trash'></span></button>
+                </td>
             </tr>
             @endforeach
         </tbody>
